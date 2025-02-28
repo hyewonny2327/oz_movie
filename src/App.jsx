@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import MovieCard from "./components/MovieCard";
+import MovieDetail from "./components/MovieDetail";
+import movieListData from "./data/movieListData.json";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [movieList, setMovieList] = useState();
 
+  useEffect(() => {
+    // movieListData.json 데이터를 import하여 상태로 관리합니다.
+    setMovieList(movieListData.results);
+  }, []);
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <MovieDetail />
+      {/* App.jsx 파일에서 MovieCard 컴포넌트를 사용하여 영화 목록을 렌더링합니다. */}
+      {movieList?.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          poster_path={movie.poster_path}
+          title={movie.title}
+          vote_average={movie.vote_average}
+        />
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
