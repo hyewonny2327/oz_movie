@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<App />}></Route>
+          <Route path="/" element={<App />}></Route>
           <Route path="/details/:id" element={<MovieDetail />}></Route>
         </Route>
       </Routes>
