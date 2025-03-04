@@ -37,8 +37,14 @@ function App() {
         }
       );
       const movieData = await response.json();
-      // console.log(import.meta.env.VITE_API_TOKEN); // 정상 출력됨
+      console.log(movieData);
       setMovieList(movieData.results);
+    }
+
+    async function saveUserInfo() {
+      const user = await getUserInfo();
+      // setUserInfo(user.user);
+      console.log(user.user);
     }
     // movieListData.json 데이터를 import하여 상태로 관리합니다.
 
