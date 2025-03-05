@@ -11,7 +11,6 @@ export const useEmailAuth = () => {
   const { setItemToLocalStorage } = localStorageUtils();
 
   const signUp = async ({ email, password, ...userData }) => {
-    console.log("확인", email, password);
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -44,7 +43,6 @@ export const useEmailAuth = () => {
   };
 
   const login = async ({ email, password }) => {
-    console.log("check", email, password);
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,

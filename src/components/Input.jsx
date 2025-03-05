@@ -1,3 +1,5 @@
+import styles from "../styles/input.module.scss";
+
 function Input({
   type,
   id,
@@ -5,23 +7,24 @@ function Input({
   value,
   onChange,
   placeholder,
-  errorMessage,
+  // errorMessage,
 }) {
   function handleInputChange(e) {
     onChange(e.target.value);
     console.log(e.target.value);
   }
   return (
-    <div>
+    <div className={styles.inputContainer}>
       <label htmlFor={id}>{label}</label>
       <input
+        className={styles.input}
         type={type}
         id={id}
         value={value}
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <div>{errorMessage}</div>
+      {/* <div>{errorMessage}</div> */}
     </div>
   );
 }
