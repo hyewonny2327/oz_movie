@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import { SupabaseProvider } from "./supabase/index.js";
 import SignupPage from "./pages/SignupPage.jsx";
 import { UserProvider } from "./hooks/useProvider.jsx";
+import MyPage from "./pages/MyPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/details/:id" element={<MovieDetail />}></Route>
               <Route path="/login" element={<LoginPage />}></Route>
               <Route path="/signup" element={<SignupPage />}></Route>
+              <Route path="/mypage" element={<MyPage />}></Route>
             </Route>
           </Routes>
         </Router>

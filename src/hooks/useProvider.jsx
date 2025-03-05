@@ -7,14 +7,6 @@ export const UserContext = createContext(null);
 export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
 
-  // // // 3. LocalStorage에서 유저 정보 불러오기
-  // useEffect(() => {
-  //   const storedUser = JSON.parse(localStorage.getItem("userInfo"));
-  //   if (storedUser) {
-  //     setUserInfo(storedUser);
-  //   }
-  // }, []);
-
   const updateUser = (newUser) => {
     setUserInfo(newUser);
     localStorage.setItem("userInfo", JSON.stringify(newUser)); // ✅ LocalStorage에 저장
