@@ -17,9 +17,9 @@ function App() {
     async function getUserData() {
       await getUserInfo();
       // //로컬 스토리지에서 가져옴
-      const userData = JSON.parse(localStorage.getItem("userInfo") || null);
+      const userData = JSON.parse(localStorage.getItem("userInfo"));
       // //유저 데이터를 context api로 업데이트
-      updateUser(userData);
+      if (userData) updateUser(userData);
     }
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +42,7 @@ function App() {
 
     async function fetchMovieData() {
       const response = await fetch(
-        "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko&page=1&sort_by=popularity.desc",
+        "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=2",
         {
           method: "GET",
           headers: {

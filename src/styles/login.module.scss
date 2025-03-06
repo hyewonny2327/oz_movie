@@ -1,5 +1,32 @@
-.loginContainer {
+.contentContainer {
+  display: flex;
+  height: calc(100% - 5rem);
+  justify-content: center;
+  align-items: center;
+}
+.inputContainer {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 300px;
+  gap: 1rem;
+}
+.button {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 800;
+  background-color: #f3f3f3;
+  padding: 1rem;
+}
+.socialLoginContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.7rem;
+}
+.title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
 }

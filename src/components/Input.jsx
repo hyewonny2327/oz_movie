@@ -15,7 +15,9 @@ function Input({
   }
   return (
     <div className={styles.inputContainer}>
-      <label htmlFor={id}>{label}</label>
+      <label className={styles.inputLabel} htmlFor={id}>
+        {label}
+      </label>
       <input
         className={styles.input}
         type={type}

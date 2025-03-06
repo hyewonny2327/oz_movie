@@ -7,6 +7,8 @@ export const useSupabaseAuth = () => {
   const { login, signUp } = useEmailAuth();
   const { loginWithGoogle, loginWithKakao } = useOAuth();
 
+  console.log("useSupabaseAuth 실행됨");
+
   return {
     login,
     signUp,

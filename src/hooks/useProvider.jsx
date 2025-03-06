@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
 
   const updateUser = (newUser) => {
     setUserInfo(newUser);
-    localStorage.setItem("userInfo", JSON.stringify(newUser)); // ✅ LocalStorage에 저장
+    localStorage.setItem("userInfo", JSON.stringify(newUser));
   };
 
   return (
