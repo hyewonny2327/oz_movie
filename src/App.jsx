@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSupabaseAuth } from "./supabase";
 import useMovieData from "./hooks/useMovieData";
 import useUser from "./hooks/useUser";
+import ContentsContainer from "./components/common/ContentsContainer";
 
 function App() {
   // const [movieList, setMovieList] = useState();
@@ -29,9 +30,8 @@ function App() {
 
   return (
     <>
-      <div className={styles.contentsContainer}>
+      <ContentsContainer>
         <div className={styles.list__container}>
-          {/* App.jsx 파일에서 MovieCard 컴포넌트를 사용하여 영화 목록을 렌더링합니다. */}
           {movieList?.map((movie) => (
             <div className={styles.list__contents} key={movie.id}>
               <MovieCard
@@ -43,7 +43,7 @@ function App() {
             </div>
           ))}
         </div>
-      </div>
+      </ContentsContainer>
     </>
   );
 }

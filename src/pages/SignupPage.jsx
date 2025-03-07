@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "../components/Input";
 import styles from "../styles/login.module.scss";
 import { useSupabaseAuth } from "../supabase";
+import ContentsContainer from "../components/common/ContentsContainer";
 
 function SignupPage() {
   const [userEmail, setUserEmail] = useState("");
@@ -21,7 +22,7 @@ function SignupPage() {
     signUp({ email: userEmail, password: userPassword });
   }
   return (
-    <div className={styles.contentContainer}>
+    <ContentsContainer scrollType="fixed">
       <div className={styles.inputContainer}>
         <div className={styles.title}>회원가입</div>
         <Input
@@ -62,7 +63,7 @@ function SignupPage() {
           <div onClick={() => handleSocialLogin("kakao", "/")}>구글로그인</div>
         </div>
       </div>
-    </div>
+    </ContentsContainer>
   );
 }
 

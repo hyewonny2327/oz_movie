@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Input from "../components/Input";
 import styles from "../styles/login.module.scss";
 import { useSupabaseAuth } from "../supabase";
+import ContentsContainer from "../components/common/ContentsContainer";
 function LoginPage() {
   const [userEmail, setUserEmail] = useState("");
   const [userPw, setUserPw] = useState("");
@@ -21,7 +22,7 @@ function LoginPage() {
   useEffect(() => {}, []);
 
   return (
-    <div className={styles.contentContainer}>
+    <ContentsContainer scrollType="fixed">
       <div className={styles.inputContainer}>
         <div className={styles.title}>로그인</div>
         <Input
@@ -51,7 +52,7 @@ function LoginPage() {
           <div onClick={() => handleSocialLogin("kakao", "/")}>구글로그인</div>
         </div>
       </div>
-    </div>
+    </ContentsContainer>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/movieDetail.module.scss";
 import { useParams } from "react-router-dom";
+import ContentsContainer from "../components/common/ContentsContainer";
 function MovieDetail() {
   const { id } = useParams();
   const [movieDetailData, setMovieDetailData] = useState();
@@ -24,7 +25,7 @@ function MovieDetail() {
     console.log(movieDetailData);
   }, [movieDetailData]);
   return (
-    <div className={styles.contentContainer}>
+    <ContentsContainer scrollType="fixed">
       <div className={styles.detail__container}>
         <img
           className={styles.detail__image}
@@ -47,7 +48,7 @@ function MovieDetail() {
           </div>
         </div>
       </div>
-    </div>
+    </ContentsContainer>
   );
 }
 export default MovieDetail;

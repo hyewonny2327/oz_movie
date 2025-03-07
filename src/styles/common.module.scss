@@ -1,0 +1,14 @@
+.contentsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll {
+  padding: 1rem;
+}
+
+.fixed {
+  height: calc(100% - 5rem);
+}
