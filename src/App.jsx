@@ -2,16 +2,18 @@ import { useSearchParams } from "react-router-dom";
 import "./App.css";
 import MovieCard from "./components/MovieCard";
 import styles from "./styles/mainPage.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSupabaseAuth } from "./supabase";
-import useUser from "./hooks/useUserInfo";
+import useMovieData from "./hooks/useMovieData";
+import useUser from "./hooks/useUser";
 
 function App() {
-  const [movieList, setMovieList] = useState();
+  // const [movieList, setMovieList] = useState();
   const [searchParams] = useSearchParams();
-  const searchInput = searchParams.get("query");
+  const searchInput = searchParams.get("query") | "";
   const { getUserInfo } = useSupabaseAuth();
   const { updateUser } = useUser();
+  const movieList = useMovieData(searchInput);
 
   useEffect(() => {
     async function getUserData() {
@@ -25,44 +27,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    async function fetchSearchMovie() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${searchInput}&include_adult=false&language=ko&page=1`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-          },
-        }
-      );
-      const searchResult = await response.json();
-      setMovieList(searchResult.results);
-    }
-
-    async function fetchMovieData() {
-      const response = await fetch(
-        "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=2",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-          },
-        }
-      );
-      const movieData = await response.json();
-      console.log(movieData);
-      setMovieList(movieData.results);
-    }
-    // movieListData.json 데이터를 import하여 상태로 관리합니다.
-
-    if (!searchInput) {
-      fetchMovieData();
-    } else {
-      fetchSearchMovie();
-    }
-    fetchMovieData();
-  }, [searchInput]);
   return (
     <>
       <div className={styles.contentsContainer}>

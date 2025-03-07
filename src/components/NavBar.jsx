@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import useUser from "../hooks/useUserInfo";
 import styles from "../styles/navBar.module.scss";
 import Search from "./Search";
 import { useSupabaseAuth } from "../supabase";
 import { useEffect, useState } from "react";
+import useUser from "../hooks/useUser";
 function NavBar() {
   const { userInfo } = useUser();
   const navigate = useNavigate();

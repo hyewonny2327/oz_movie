@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import useUser from "../hooks/useUserInfo";
 import { useNavigate } from "react-router-dom";
-
+import useUser from "../hooks/useUser";
 function MyPage() {
   const { userInfo } = useUser();
   const navigate = useNavigate();

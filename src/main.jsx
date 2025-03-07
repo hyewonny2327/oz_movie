@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SupabaseProvider } from "./supabase/index.js";
-import { UserProvider } from "./hooks/useProvider.jsx";
+import { UserProvider } from "./providers/userProvider.jsx";
 import "./index.css";
 import AppRouter from "./routes/AppRouter.jsx";
 

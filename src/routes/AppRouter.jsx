@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import SignupPage from "./pages/SignupPage.jsx";
-import MyPage from "./pages/MyPage.jsx";
-import App from "./App.jsx";
-import MovieDetail from "./pages/MovieDetail.jsx";
+import Layout from "../pages/Layout.jsx";
+import LoginPage from "../pages/LoginPage.jsx";
+import SignupPage from "../pages/SignupPage.jsx";
+import MyPage from "../pages/MyPage.jsx";
+import App from "../App.jsx";
+import MovieDetail from "../pages/MovieDetail.jsx";
 function AppRouter() {
   return (
     <Router>
