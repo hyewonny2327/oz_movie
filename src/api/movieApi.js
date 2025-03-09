@@ -9,10 +9,12 @@ export async function getMovieDetail(id) {
   return movieDetail;
 }
 
-export async function getMovieData(searchQuery) {
-  const endpoint = searchQuery
-    ? `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=ko-KR&page=1`
-    : 'https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1';
+export async function getMovieData(searchQuery, page) {
+  console.log('searchQuery', searchQuery);
+  const endpoint =
+    searchQuery !== null
+      ? `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=ko-KR&page=${page}`
+      : `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${page}`;
   const response = await fetch(endpoint, {
     method: 'GET',
     headers: {

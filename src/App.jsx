@@ -2,18 +2,24 @@ import { useSearchParams } from 'react-router-dom';
 import './App.css';
 import MovieCard from './components/MovieCard';
 import styles from './styles/mainPage.module.scss';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useSupabaseAuth } from './supabase';
-import useMovieData from './hooks/useMovieData';
+// import useMovieData from './hooks/useMovieData';
 import { UserContext } from './providers/userProvider';
+import useInfiniteScroll from './hooks/useInfinityScroll';
+import { getMovieData } from './api/movieApi';
 // import useUser from './hooks/useUser';
 
 function App() {
   const [searchParams] = useSearchParams();
-  const searchInput = searchParams.get('query') | '';
+  const searchInput = searchParams.get('query');
   const { getUserInfo } = useSupabaseAuth();
   const { userInfo, setUserInfo } = useContext(UserContext);
-  const movieList = useMovieData(searchInput);
+  // const movieList = useMovieData(searchInput);
+  const [movieList, setMovieList] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
+  const targetRef = useRef(null);
 
   useEffect(() => {
     async function getUserData() {
@@ -22,12 +28,37 @@ function App() {
       if (userData) setUserInfo(userData);
     }
     getUserData();
+    setTargetRef(targetRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getMovieList = async () => {
+    if (hasMore) {
+      const response = await getMovieData(searchInput, page);
+      setMovieList((prev) => [...prev, ...response.results]);
+      setPage((prev) => prev + 1);
+      setHasMore(response.results.length > 0);
+    } else return;
+  };
   useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
+    if (searchInput !== null) {
+      console.log('search', searchInput);
+      setMovieList([]);
+      setPage(1);
+      setHasMore(true);
+      getMovieList();
+    }
+
+    if (!searchInput) {
+      console.log('Loading default movies...');
+      setMovieList([]);
+      setPage(1);
+      setHasMore(true);
+      getMovieList();
+    }
+  }, [searchInput]);
+  const { setTargetRef } = useInfiniteScroll(getMovieList);
+
   return (
     <>
       <div className={styles.contentsContainer}>
@@ -44,6 +75,13 @@ function App() {
             </div>
           ))}
         </div>
+        {hasMore && (
+          <div
+            ref={targetRef}
+            onIntersect={getMovieList}
+            style={{ width: '20px', height: '20px', backgroundColor: 'red' }}
+          ></div>
+        )}
       </div>
     </>
   );

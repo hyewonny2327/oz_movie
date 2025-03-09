@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getMovieData } from '../api/movieApi';
+import useInfiniteScroll from './useInfinityScroll';
 
 const useMovieData = (searchQuery) => {
   const [movieList, setMovieList] = useState();
