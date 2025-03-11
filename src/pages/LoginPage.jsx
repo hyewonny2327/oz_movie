@@ -1,26 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Input from "../components/Input";
 import styles from "../styles/login.module.scss";
 import { useSupabaseAuth } from "../supabase";
+import SocialLogin from "../components/SocialLogin";
 import ContentsContainer from "../components/common/ContentsContainer";
 function LoginPage() {
   const [userEmail, setUserEmail] = useState("");
   const [userPw, setUserPw] = useState("");
-  const { login, loginWithGoogle, loginWithKakao } = useSupabaseAuth();
+  const { login } = useSupabaseAuth();
 
   function handleLoginButtonClick() {
     login({ email: userEmail, password: userPw });
   }
-
-  function handleSocialLogin(type, redirectUrl) {
-    if (type == "kakao") {
-      loginWithKakao(redirectUrl);
-    } else if (type == "google") {
-      loginWithGoogle(redirectUrl);
-    }
-  }
-  useEffect(() => {}, []);
-
   return (
     <ContentsContainer scrollType="fixed">
       <div className={styles.inputContainer}>
@@ -44,13 +35,7 @@ function LoginPage() {
         <div className={styles.button} onClick={() => handleLoginButtonClick()}>
           로그인
         </div>
-        <div className={styles.socialLoginContainer}>
-          <div>오즈 무비가 처음이신가요?</div>
-          <div onClick={() => handleSocialLogin("kakao", "/")}>
-            카카오로그인
-          </div>
-          <div onClick={() => handleSocialLogin("kakao", "/")}>구글로그인</div>
-        </div>
+        <SocialLogin />
       </div>
     </ContentsContainer>
   );

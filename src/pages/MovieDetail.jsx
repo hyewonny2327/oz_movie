@@ -2,28 +2,18 @@ import { useEffect, useState } from "react";
 import styles from "../styles/movieDetail.module.scss";
 import { useParams } from "react-router-dom";
 import ContentsContainer from "../components/common/ContentsContainer";
+import { getMovieDetail } from "../api/movieApi";
 function MovieDetail() {
   const { id } = useParams();
   const [movieDetailData, setMovieDetailData] = useState();
   useEffect(() => {
-    async function fetchMovieDetail() {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?language=ko`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-          },
-        }
-      );
-      const movieDetail = await data.json();
-      setMovieDetailData(movieDetail);
+    async function getMovieDetailData() {
+      const response = await getMovieDetail(id);
+      setMovieDetailData(response);
     }
-    fetchMovieDetail();
+    getMovieDetailData();
   }, [id]);
-  useEffect(() => {
-    console.log(movieDetailData);
-  }, [movieDetailData]);
+
   return (
     <ContentsContainer scrollType="fixed">
       <div className={styles.detail__container}>

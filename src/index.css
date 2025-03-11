@@ -3,6 +3,7 @@ body,
 .layout {
   height: 100%;
   box-sizing: border-box;
+  /* background-color: #f5f1e3; */
 }
 * {
   margin: 0;
